@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
-    public class Creatingcontacts
+    public class CreatingContacts
     {
-        List<contacts> People = new List<contacts> ();
+        List<contacts> People = new List<contacts>();
 
 
         public void Contacts()
@@ -38,11 +38,11 @@ namespace AddressBook
 
             Console.WriteLine("Enter Phone Number : ");
             contact.PhoneNumber = Console.ReadLine();
-            
+
             Console.WriteLine("\n");
 
             People.Add(contact);
-            
+
         }
 
 
@@ -76,22 +76,22 @@ namespace AddressBook
                             Console.WriteLine("Please enter the Email : ");
                             string Email = Console.ReadLine();
                             data.Email = Email;
-                            
+
                             break;
                         case 4:
                             Console.WriteLine("Please enter the Phone Number : ");
                             string PhoneNumber = Console.ReadLine();
-                            data.PhoneNumber = PhoneNumber;                            
+                            data.PhoneNumber = PhoneNumber;
                             break;
                         case 5:
                             Console.WriteLine("Please enter the Address : ");
                             string address = Console.ReadLine();
-                            data.Address = address;                           
+                            data.Address = address;
                             break;
                         case 6:
                             Console.WriteLine("Please enter the city : ");
                             string city = Console.ReadLine();
-                            data.City = city;                        
+                            data.City = city;
                             break;
                         case 7:
                             Console.WriteLine("Please enter the zip Code : ");
@@ -141,6 +141,15 @@ namespace AddressBook
             }
         }
 
+        public void Addmultiplepersons(int n)
+        {
+            while (n > 0)
+            {
+                Contacts();
+                n--;
+            }
+
+        }
 
         public void output()
         {
@@ -153,11 +162,11 @@ namespace AddressBook
                 Console.WriteLine("Address : " + data.Address);
                 Console.WriteLine("City : " + data.City);
                 Console.WriteLine("Zip : " + data.Zip);
-                Console.WriteLine("State : " + data.State);                              
+                Console.WriteLine("State : " + data.State);
                 Console.WriteLine("\n");
 
             }
-            
+
         }
     }
 }
