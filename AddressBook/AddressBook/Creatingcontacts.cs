@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
-    public class Creatingcontacts
+    public class CreatingContacts
     {
-        List<contacts> People = new List<contacts> ();
+        List<contacts> People = new List<contacts>();
+        public Dictionary<string, List<contacts>> dict = new Dictionary<string, List<contacts>>();
 
 
         public void Contacts()
@@ -38,11 +39,11 @@ namespace AddressBook
 
             Console.WriteLine("Enter Phone Number : ");
             contact.PhoneNumber = Console.ReadLine();
-            
+
             Console.WriteLine("\n");
 
             People.Add(contact);
-            
+
         }
 
 
@@ -76,22 +77,22 @@ namespace AddressBook
                             Console.WriteLine("Please enter the Email : ");
                             string Email = Console.ReadLine();
                             data.Email = Email;
-                            
+
                             break;
                         case 4:
                             Console.WriteLine("Please enter the Phone Number : ");
                             string PhoneNumber = Console.ReadLine();
-                            data.PhoneNumber = PhoneNumber;                            
+                            data.PhoneNumber = PhoneNumber;
                             break;
                         case 5:
                             Console.WriteLine("Please enter the Address : ");
                             string address = Console.ReadLine();
-                            data.Address = address;                           
+                            data.Address = address;
                             break;
                         case 6:
                             Console.WriteLine("Please enter the city : ");
                             string city = Console.ReadLine();
-                            data.City = city;                        
+                            data.City = city;
                             break;
                         case 7:
                             Console.WriteLine("Please enter the zip Code : ");
@@ -141,6 +142,71 @@ namespace AddressBook
             }
         }
 
+        public void Addmultiplepersons(int n)
+        {
+            while (n > 0)
+            {
+                Contacts();
+                n--;
+            }
+
+        }
+        public void Adduniquecontacts()
+        {
+            Console.WriteLine("Enter the Firstname in your contactlist");
+            string name = Console.ReadLine();
+            foreach (var data in People)
+            {
+                if (People.Contains(data))
+                {
+                    if (data.FirstName == name)
+                    {
+                        Console.WriteLine("This contact exists please enter an unique name to store this data");
+                        string uniquename = Console.ReadLine();
+                        if (dict.ContainsKey(uniquename))
+                        {
+                            Console.WriteLine("This unique name already exists");
+                        }
+                        dict.Add(uniquename, People);
+                        return;
+                    }
+                }
+
+
+            }
+            Console.WriteLine("This contactlist doesn't exist, please creat a contactlist");
+            return;
+
+        }
+
+
+        public void DisplayUniqueContacts()
+        {
+            Console.WriteLine("Enter the Uniquename of your contacts");
+            string name = Console.ReadLine();
+
+
+            foreach (var contacts in dict)
+            {
+                if (contacts.Key.Contains(name))
+                {
+
+                    foreach (var contact in contacts.Value)
+                    {
+                        Console.WriteLine("The details of " + name + " are \n" + "Name: " + contact.FirstName + " " + contact.LastName + "\n" + "Email: " + contact.Email + "\n" +
+                            "Phone Number: " + contact.PhoneNumber + "\n" + "Address: " + contact.Address + "\n" + "city: " + contact.City + "\n" + "Zip: " + contact.Zip + "\n" + "state: " + contact.State);
+                        return;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("this unique name doesn't exist");
+                }
+
+            }
+            Console.WriteLine("This Uniquelist doesn't exist, please creat a Uniquelist");
+        }
+
 
         public void output()
         {
@@ -153,11 +219,11 @@ namespace AddressBook
                 Console.WriteLine("Address : " + data.Address);
                 Console.WriteLine("City : " + data.City);
                 Console.WriteLine("Zip : " + data.Zip);
-                Console.WriteLine("State : " + data.State);                              
+                Console.WriteLine("State : " + data.State);
                 Console.WriteLine("\n");
 
             }
-            
+
         }
     }
 }
